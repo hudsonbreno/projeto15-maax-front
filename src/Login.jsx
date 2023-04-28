@@ -5,26 +5,27 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Login({ setToken }) {
-  const [form, setForm] = { email: "", senha: "" };
+  const [form, setForm] = useState({ email: "", senha: "" });
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
-    function Digitando(event){
-        setForm({...form, [event.target.name]: event.target.value})
-    }
+  function Digitando(event) {
+    setForm({ ...form, [event.target.name]: event.target.value })
+  }
 
-    function logar(e){
-        e.prenventDefault();
-        let dados= form
-        const promise= axios.post(
-            "URL do post no /login",
-            dados
-        )
-    }
+  function logar(e) {
+    e.prenventDefault();
+    let dados = form
+    const promise = axios.post(
+      "URL do post no /login",
+      dados
+    )
+  }
 
   return (
     <>
       <PageLogin>
+        <img src="" />
         <Formulario>
           <form onSubmit={logar}>
             <input
@@ -41,6 +42,7 @@ export default function Login({ setToken }) {
               value={form.senha}
               onChange={Digitando}
             ></input>
+            <button type="submit">Logar</button>
           </form>
         </Formulario>
       </PageLogin>
@@ -50,4 +52,46 @@ export default function Login({ setToken }) {
 
 const PageLogin = styled.div`
   display: flex;
+  background-color: #000000;
+  img{
+    width:360px;
+    height:131px;
+  }
 `;
+
+const Formulario = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  input{
+    width:326px;
+    height:58;
+    margin-top:13px;
+
+    font-family: 'Recursive';
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 19px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.09em;
+
+color: #7D7B7B;
+  }
+  button{
+    width:326px;
+    height:326px;
+    
+    font-family: 'Recursive';
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 28px;
+    line-height: 34px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.09em;
+
+color: #8E2126;
+  }
+`

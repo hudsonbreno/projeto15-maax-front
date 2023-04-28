@@ -3,6 +3,8 @@ import { useState } from "react";
 import Login from "./Login";
 import Cadastro from "./Cadastro";
 import Carrinho from "./Carrinho";
+import Produtos from "./Produtos";
+import Checkout from "./Checkout";
 
 function App() {
   const [token, setToken] = useState("");
@@ -11,9 +13,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login setToken={setToken} />} />
+          <Route path="/login" element={<Login setToken={setToken} />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="" element={<Produtos token={ token }/>}/>
+          <Route path="/" element={<Produtos token={ token }/>}/>
           <Route path="/carrinho" element={<Carrinho token={token} />} />
           <Route
             path="/checkout"

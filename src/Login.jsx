@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Logo from "./style/Logo_360x131.png"
 
 export default function Login({ setToken }) {
   const [form, setForm] = useState({ email: "", senha: "" });
@@ -16,17 +17,19 @@ export default function Login({ setToken }) {
   function logar(e) {
     e.prenventDefault();
     let dados = form
-    const promise = axios.post(
-      "URL do post no /login",
-      dados
-    )
+    console.log(dados)
+    // const promise = axios.post(
+    //   "URL do post no /login",
+    //   dados
+    // )
+    navigate("/")
   }
 
   return (
     <>
       <PageLogin>
-        <img src="" />
         <Formulario>
+          <img src={Logo}/>
           <form onSubmit={logar}>
             <input
               type="email"
@@ -42,7 +45,9 @@ export default function Login({ setToken }) {
               value={form.senha}
               onChange={Digitando}
             ></input>
-            <button type="submit">Logar</button>
+
+              <button type="submit">Logar</button>
+              <Link to="/cadastro">Primeira vez? Cadastrar</Link>
           </form>
         </Formulario>
       </PageLogin>
@@ -52,23 +57,27 @@ export default function Login({ setToken }) {
 
 const PageLogin = styled.div`
   display: flex;
-  background-color: #000000;
-  img{
-    width:360px;
-    height:131px;
-  }
+  justify-content: center;
 `;
 
 const Formulario = styled.div`
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  input{
-    width:326px;
-    height:58;
-    margin-top:13px;
+  img{
+    margin-top:126px;
+    margin-bottom: 60px;
+    width: 360px;
+    height: 131px;
+  }
+  input {
+    width: 326px;
+    height: 58px;
+    margin-top: 13px;
 
-    font-family: 'Recursive';
+    border-radius: 5px;
+
+    font-family: "Recursive";
     font-style: normal;
     font-weight: 1000;
     font-size: 19px;
@@ -77,13 +86,16 @@ const Formulario = styled.div`
     align-items: center;
     letter-spacing: 0.09em;
 
-color: #7D7B7B;
-  }
-  button{
-    width:326px;
-    height:326px;
-    
-    font-family: 'Recursive';
+}
+  
+
+  button {
+    margin-top: 45px;
+    margin-bottom: 32px;
+    width: 326px;
+    height: 58px;
+
+    font-family: "Recursive";
     font-style: normal;
     font-weight: 1000;
     font-size: 28px;
@@ -92,6 +104,25 @@ color: #7D7B7B;
     text-align: center;
     letter-spacing: 0.09em;
 
-color: #8E2126;
+    color: #8e2126;
   }
-`
+
+  a {
+    display: flex;
+    justify-content: center;
+    font-family: "Recursive";
+    font-style: normal;
+    font-weight: 1000;
+    font-size: 19px;
+    line-height: 23px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.09em;
+
+    color: #7d7b7b;
+
+    border: 1px solid #ffffff;
+  }
+`;
+

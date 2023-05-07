@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
-import Logo from "./style/Logo_360x131.png"
+import Logo from "./style/Logo.png"
 
 export default function({tokem, lista, setLista}){
     return(

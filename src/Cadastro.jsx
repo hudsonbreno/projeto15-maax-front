@@ -2,7 +2,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Logo from "./style/Logo_360x131.png"
+import Logo from "./style/Logo.png"
 
 export default function Cadastro() {
 

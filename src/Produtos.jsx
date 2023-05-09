@@ -1,20 +1,26 @@
 import axios from "axios";
 import styled from "styled-components";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "./style/Logo.png";
 import Creatina from "./style/Creatina.png";
 import banner from "./style/Banner.png";
 import Promocao from "./style/Promocao.png";
+import Menu from "./style/3tracinhos.png"
+import Carrinho from "./style/carrinho.png"
 
 export default function Produtos() {
+  const [selecionarCategoria, setSelecionarCategoria] = useState("");
+
   const navigate = useNavigate();
+  console.log(selecionarCategoria);
 
   return (
     <PageProdutos>
       <Header>
-        <img src="3 tracinhos" />
+        <img src={Menu} />
         <img className="logo" src={Logo} />
-        <img src="carrinho" />
+        <img src={Carrinho} />
       </Header>
 
       <Banner>
@@ -24,38 +30,24 @@ export default function Produtos() {
       </Banner>
 
       <ConteudoPagina>
-        <button> PROMOÇÕES</button>
+        <Categoria>
+          <select
+            id="category"
+            value={selecionarCategoria}
+            onChange={(e) => setSelecionarCategoria(e.target.value)}
+          >
+            <option value="">Selecione</option>
+            <option value="promocoes">Promoções</option>
+            <option value="whey">Whey</option>
+            <option value="creatina">Creatina</option>
+          </select>
+        </Categoria>
 
         <NomeCategoria>
           <img src={Promocao} />
           <p>PROMOÇÕES</p>
         </NomeCategoria>
         <ListaProdutos>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
           <Produto>
             <img src={Creatina} />
             <h1>CREATINA POWER 300GR PROFIT</h1>
@@ -69,31 +61,6 @@ export default function Produtos() {
         </NomeOutraCategoria>
 
         <ListaProdutos>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
           <Produto>
             <img src={Creatina} />
             <h1>CREATINA POWER 300GR PROFIT</h1>
@@ -201,6 +168,30 @@ const ListaProdutos = styled.div`
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
+`;
+
+const Categoria = styled.div`
+  display: flex;
+  select {
+    margin-top: 26px;
+    margin-bottom: 17px;
+    width: 225px;
+    height: 42px;
+    text-align: center;
+    border-radius: 17px;
+    background-color: #5a5a5a;
+
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+  }
 `;
 
 const NomeCategoria = styled.div`

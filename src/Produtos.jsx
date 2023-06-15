@@ -1,27 +1,18 @@
-import axios from "axios";
 import styled from "styled-components";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Logo from "./style/Logo.png";
-import Creatina from "./style/Creatina.png";
+import { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import banner from "./style/Banner.png";
-import Promocao from "./style/Promocao.png";
-import Menu from "./style/3tracinhos.png"
-import Carrinho from "./style/carrinho.png"
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import ConteudoPagina from "./components/ProdutosComponents/ConteudoPagina";
 
 export default function Produtos() {
-  const [selecionarCategoria, setSelecionarCategoria] = useState("");
-
-  const navigate = useNavigate();
-  console.log(selecionarCategoria);
+  const [selecionarCategoria, setSelecionarCategoria] =
+    useState("Todos produtos");
 
   return (
     <PageProdutos>
-      <Header>
-        <img src={Menu} />
-        <img className="logo" src={Logo} />
-        <img src={Carrinho} />
-      </Header>
+      <Header />
 
       <Banner>
         <img src={banner} />
@@ -29,50 +20,8 @@ export default function Produtos() {
         <h1>SEU GANHO COM NOSSOS SUPLEMENTOS</h1>
       </Banner>
 
-      <ConteudoPagina>
-        <Categoria>
-          <select
-            id="category"
-            value={selecionarCategoria}
-            onChange={(e) => setSelecionarCategoria(e.target.value)}
-          >
-            <option value="">Selecione</option>
-            <option value="promocoes">Promoções</option>
-            <option value="whey">Whey</option>
-            <option value="creatina">Creatina</option>
-          </select>
-        </Categoria>
-
-        <NomeCategoria>
-          <img src={Promocao} />
-          <p>PROMOÇÕES</p>
-        </NomeCategoria>
-        <ListaProdutos>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-        </ListaProdutos>
-
-        <NomeOutraCategoria>
-          <img src="icone-categoria" />
-          <p>PROMOÇÕES</p>
-        </NomeOutraCategoria>
-
-        <ListaProdutos>
-          <Produto>
-            <img src={Creatina} />
-            <h1>CREATINA POWER 300GR PROFIT</h1>
-            <p>R$123,99</p>
-          </Produto>
-        </ListaProdutos>
-      </ConteudoPagina>
-
-      <Footer>
-        <p>Maax Fitness Suplementos 2023</p>
-        <p>Todos os Direitos Reservados</p>
-      </Footer>
+      <ConteudoPagina selecionarCategoria={selecionarCategoria} setSelecionarCategoria={setSelecionarCategoria}/>
+      <Footer />
     </PageProdutos>
   );
 }
@@ -84,26 +33,6 @@ const PageProdutos = styled.div`
   align-items: center;
   justify-content: center;
   background-color: #000000;
-`;
-
-const Header = styled.div`
-  width: 100%;
-  height: 77px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  img {
-    margin-left: 15px;
-    margin-right: 15px;
-    margin-top: 13px;
-    height: 50px;
-    width: 50px;
-  }
-  .logo {
-    width: 211px;
-    height: 70px;
-  }
 `;
 
 const Banner = styled.div`
@@ -148,127 +77,4 @@ const Banner = styled.div`
 
     color: #ffffff;
   }
-`;
-
-const ConteudoPagina = styled.div`
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 360px;
-  button {
-    margin-top: 16px;
-    margin-bottom: 10px;
-  }
-`;
-
-const ListaProdutos = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
-
-const Categoria = styled.div`
-  display: flex;
-  select {
-    margin-top: 26px;
-    margin-bottom: 17px;
-    width: 225px;
-    height: 42px;
-    text-align: center;
-    border-radius: 17px;
-    background-color: #5a5a5a;
-
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 800;
-    font-size: 18px;
-    line-height: 22px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
-  }
-`;
-
-const NomeCategoria = styled.div`
-  display: flex;
-  width: 100%;
-  img {
-    width: 38px;
-    margin-left: 15px;
-    margin-right: 15px;
-  }
-  p {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Recursive";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 36px;
-    line-height: 43px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
-  }
-`;
-
-const Produto = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 177px;
-  img {
-    margin-top: 3px;
-    width: 113px;
-    height: 119px;
-  }
-  h1 {
-    margin-top: 3px;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
-
-    color: #000000;
-  }
-  p {
-    margin-top: 7px;
-    margin-bottom: 7px;
-    background-color: #d9d9d9;
-    border-radius: 20px;
-    width: 72px;
-    height: 26px;
-    align-items: center;
-    justify-content: center;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 13px;
-    line-height: 16px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-    color: #000000;
-  }
-`;
-
-const NomeOutraCategoria = styled.div`
-  display: flex;
-`;
-
-const Footer = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: #ffffff;
 `;
